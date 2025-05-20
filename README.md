@@ -31,7 +31,7 @@ Source code, model weights, and proprietary endpoints remain private.
 | **Data Layer** | Amazon RDS Postgres, S3 (audio blobs) | Audio encrypted at rest |
 | **Infra / Ops** | EC2 Auto Scaling (2 AZ) behind HTTPS ALB | Rolling updates with health probes |
 
-![Architecture diagram](assets/architecture.png)
+![Architecture diagram](assets/architecture.png) 
 
 ---
 
