@@ -3,19 +3,15 @@
 > **Role:** Cloud & DevOps Engineer – AI Prodigy  
 > **Mission:** Deliver natural-sounding voice translation in the browser with ∼15 s latency.
 
-This repo gives a **code-free, recruiter-friendly walkthrough** of the system I helped build.  
-Source code, model weights, and proprietary endpoints remain private.
+This repo gives a **code-free, recruiter-friendly walkthrough** of the infrastructure I helped build.  
+The translation pipeline is AI Prodigy's proprietary technology, so its design, models, source code, and endpoints remain private.
 
 ---
 
 ## 1 · What the Product Does
 
-- **Live speech → subtitles → cloned voice** with ~15 s end-to-end delay  
-- Browser UI supports:
-  - Push-to-talk microphone  
-  - Whisper streaming transcription  
-  - GPT-4o streaming translation  
-  - Optional TTS voice clone playback  
+- **Live speech → subtitles → translated speech** in the browser, ~15 s end-to-end  
+- Push-to-talk microphone, live subtitles, and translated audio playback  
 - Role-based memberships (Free, Pro, Enterprise) control usage quotas
 
 ---
@@ -25,10 +21,9 @@ Source code, model weights, and proprietary endpoints remain private.
 | Tier | Key Services | Notes |
 |------|--------------|-------|
 | **Frontend** | Flask/Jinja2 web app (HTML, CSS, JavaScript), secure WebSocket | No browser plug-ins required |
-| **Realtime API** | Flask + Gunicorn (Docker)<br>Flask-Sockets (WS) | Orchestrates the translation pipeline |
-| **AI Pipeline** | Whisper STT → GPT-4o Translation → Voice-clone TTS | Staged streaming keeps latency low |
+| **Translation service** | Dockerized WebSocket service on EC2 Auto Scaling | Proprietary pipeline (details private) |
 | **Auth & Billing** | Stripe Checkout + Webhooks | Usage metering in Postgres |
-| **Data Layer** | Amazon RDS Postgres, S3 (audio blobs) | Audio encrypted at rest |
+| **Data Layer** | Amazon RDS Postgres, S3 | Encrypted at rest |
 | **Infra / Ops** | EC2 Auto Scaling (2 AZ) behind HTTPS ALB | Rolling updates with health probes |
 
 ![Architecture diagram](assets/architecture.png) 
