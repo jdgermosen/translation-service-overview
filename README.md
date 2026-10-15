@@ -24,7 +24,7 @@ Source code, model weights, and proprietary endpoints remain private.
 
 | Tier | Key Services | Notes |
 |------|--------------|-------|
-| **Frontend** | React SPA, secure WebSocket | No browser plug-ins required |
+| **Frontend** | Flask/Jinja2 web app (HTML, CSS, JavaScript), secure WebSocket | No browser plug-ins required |
 | **Realtime API** | Flask + Gunicorn (Docker)<br>Flask-Sockets (WS) | Orchestrates the translation pipeline |
 | **AI Pipeline** | Whisper STT → GPT-4o Translation → Voice-clone TTS | Staged streaming keeps latency low |
 | **Auth & Billing** | Stripe Checkout + Webhooks | Usage metering in Postgres |
@@ -41,8 +41,8 @@ Source code, model weights, and proprietary endpoints remain private.
 |-------|------------|
 | **System Design** | Contributed to latency-budget mapping and service selection during design reviews |
 | **Data Pipeline** | Collected & transformed ~300 h bilingual audio–text pairs used for model evaluation |
-| **Cloud Build** | Containerised micro-services (<150 MB images) and authored IaC for SG, ASG, ALB, RDS, S3 |
-| **Cost-Ops** | Switched NAT GW to VPC interface endpoints → **40 % monthly savings** |
+| **Cloud Build** | Containerised the services and built the AWS environment (security groups, ASG, ALB, RDS, S3), later codified in Terraform |
+| **Cost-Ops** | Replaced the NAT Gateway with a NAT instance + VPC interface endpoints → **~40 % monthly networking savings** |
 | **Security** | Secrets Manager for all keys, TLS 1.3, WAF rate-limiting, HIPAA-aligned data path |
 
 ---
@@ -55,7 +55,7 @@ Source code, model weights, and proprietary endpoints remain private.
 
 ---
 
-## 7 · Why It Matters
+## 5 · Why It Matters
 
 Need **reliable, low-latency AI workloads** in AWS—backed by measurable cost, security, and uptime guarantees?  
 I deliver the full lifecycle:
