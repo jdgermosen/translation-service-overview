@@ -3,8 +3,8 @@
 > **Role:** Cloud & DevOps Engineer – AI Prodigy  
 > **Mission:** Deliver natural-sounding voice translation in the browser with ∼15 s latency.
 
-This repo gives a **code-free, recruiter-friendly walkthrough** of the infrastructure I helped build.  
-The translation pipeline is AI Prodigy's proprietary technology, so its design, models, source code, and endpoints remain private.
+A code-free overview of the AWS infrastructure I helped build for AI Prodigy's real-time translation platform.  
+The translation pipeline itself is proprietary, so its design, models, source code, and endpoints stay private.
 
 ---
 
@@ -50,11 +50,8 @@ The translation pipeline is AI Prodigy's proprietary technology, so its design, 
 
 ---
 
-## 5 · Why It Matters
+## 5 · Lessons Learned
 
-Need **reliable, low-latency AI workloads** in AWS—backed by measurable cost, security, and uptime guarantees?  
-I deliver the full lifecycle:
-
-> _design → data → cloud build → release engineering → monitoring → optimisation_
-
-Let’s talk!
+- **Cost versus resilience.** Replacing the managed NAT Gateway with a NAT instance cut networking cost by about 40 %, but one NAT instance is a single point of failure for outbound traffic. That trade-off was right for development, not for production.
+- **Don't pay for idle servers.** A Lambda function that starts and stops the translation servers on demand avoided paying for capacity nobody was using.
+- **Hand-built infrastructure is hard to repeat.** The first environment was built with the AWS Console and CLI. Rebuilding it later in Terraform made every change reviewable and repeatable.
